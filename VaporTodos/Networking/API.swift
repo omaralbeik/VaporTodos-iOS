@@ -15,7 +15,8 @@ struct API {
 	static let todoProvider = MoyaProvider<TodoService>()
 
 	static var baseUrl: URL {
-		return URL(string: "http://localhost:8080/api")!
+		//TODO: - Replace this with your server address
+		return URL(string: "http://104.248.21.78/api")!
 	}
 
 	static var baseHeaders: [String: String] {
