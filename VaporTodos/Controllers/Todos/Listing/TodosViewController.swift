@@ -125,12 +125,16 @@ private extension TodosViewController {
 // MARK: - Networking
 private extension TodosViewController {
 
-	func fetchTodos() {
+	func fetchTodos(sender: Loadingable? = nil) {
 		guard let token = AuthCache.token?.token else { return }
+
+		sender?.setLoading(true)
 		API.todoProvider.request(.all(token: token), dataType: [Todo].self) { [weak self] result in
+			sender?.setLoading(false)
+
 			switch result {
 			case .failure(let error):
-				print(error.localizedDescription)
+				Alert(error: error).show()
 			case .success(let todos):
 				self?.todos = todos
 				self?.layoutableView.tableView.reloadData()
@@ -138,15 +142,18 @@ private extension TodosViewController {
 		}
 	}
 
-	func markTodo(indexPath: IndexPath, isDone: Bool) {
+	func markTodo(sender: Loadingable? = nil, indexPath: IndexPath, isDone: Bool) {
 		guard let token = AuthCache.token?.token else { return }
 		var updatedTodo = todos[indexPath.row]
 		updatedTodo.isDone.toggle()
 
+		sender?.setLoading(true)
 		API.todoProvider.request(.update(updatedTodo, token: token), dataType: Todo.self) { [weak self] result in
+			sender?.setLoading(false)
+
 			switch result {
 			case .failure(let error):
-				print(error.localizedDescription)
+				Alert(error: error).show()
 			case .success(let todo):
 				guard let strongSelf = self else { return }
 				strongSelf.todos[indexPath.row] = todo
@@ -155,12 +162,16 @@ private extension TodosViewController {
 		}
 	}
 
-	func deleteTodo(indexPath: IndexPath) {
+	func deleteTodo(sender: Loadingable? = nil, indexPath: IndexPath) {
 		guard let token = AuthCache.token?.token else { return }
+
+		sender?.setLoading(true)
 		API.todoProvider.request(TodoService.delete(todos[indexPath.row], token: token)) { [weak self] result in
+			sender?.setLoading(false)
+
 			switch result {
 			case .failure(let error):
-				print(error.localizedDescription)
+				Alert(error: error).show()
 			case .success:
 				guard let strongSelf = self else { return }
 				strongSelf.todos.remove(at: indexPath.row)

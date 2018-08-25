@@ -80,35 +80,33 @@ private extension TodoViewController {
 // MARK: - Networking
 private extension TodoViewController {
 
-	func createTodo(sender: Loadingable, title: String) {
+	func createTodo(sender: Loadingable? = nil, title: String) {
 		guard let token = AuthCache.token?.token else { return }
 
-		sender.setLoading(true)
+		sender?.setLoading(true)
 		API.todoProvider.request(.create(title: title, token: token), dataType: Todo.self) { [weak self] result in
-			sender.setLoading(false)
+			sender?.setLoading(false)
 
 			switch result {
 			case .failure(let error):
-				print(error.localizedDescription)
-			case .success(let todo):
-				print(todo)
+				Alert(error: error).show()
+			case .success:
 				self?.dismiss(animated: true)
 			}
 		}
 	}
 
-	func updateTodo(sender: Loadingable, todo: Todo) {
+	func updateTodo(sender: Loadingable? = nil, todo: Todo) {
 		guard let token = AuthCache.token?.token else { return }
 
-		sender.setLoading(true)
+		sender?.setLoading(true)
 		API.todoProvider.request(.update(todo, token: token), dataType: Todo.self) { [weak self] result in
-			sender.setLoading(false)
+			sender?.setLoading(false)
 
 			switch result {
 			case .failure(let error):
-				print(error.localizedDescription)
-			case .success(let todo):
-				print(todo)
+				Alert(error: error).show()
+			case .success:
 				self?.dismiss(animated: true)
 			}
 		}

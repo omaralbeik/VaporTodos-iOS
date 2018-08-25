@@ -64,11 +64,12 @@ private extension AuthViewController {
 // MARK: - Networking
 private extension AuthViewController {
 
-	func register(sender: Loadingable, email: String, name: String?, password: String) {
+	func register(sender: Loadingable? = nil, email: String, name: String?, password: String) {
 		let user = User(email: email, name: name, password: password)
-		sender.setLoading(true)
+
+		sender?.setLoading(true)
 		API.authProvider.request(.register(user: user), dataType: User.self) { result in
-			sender.setLoading(false)
+			sender?.setLoading(false)
 			switch result {
 			case .failure(let error):
 				Alert(error: error).show()
@@ -78,10 +79,11 @@ private extension AuthViewController {
 		}
 	}
 
-	func login(sender: Loadingable, email: String, password: String) {
-		sender.setLoading(true)
+	func login(sender: Loadingable? = nil, email: String, password: String) {
+		sender?.setLoading(true)
 		API.authProvider.request(.login(email: email, password: password), dataType: Token.self) { result in
-			sender.setLoading(false)
+			sender?.setLoading(false)
+
 			switch result {
 			case .failure(let error):
 				Alert(error: error).show()
