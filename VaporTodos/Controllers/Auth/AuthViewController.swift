@@ -53,9 +53,9 @@ private extension AuthViewController {
 
 		switch mode {
 		case .register:
-			register(email: email, name: name, password: password)
+			register(sender: layoutableView, email: email, name: name, password: password)
 		case .login:
-			login(email: email, password: password)
+			login(sender: layoutableView, email: email, password: password)
 		}
 	}
 
@@ -64,20 +64,24 @@ private extension AuthViewController {
 // MARK: - Networking
 private extension AuthViewController {
 
-	func register(email: String, name: String?, password: String) {
+	func register(sender: Loadingable, email: String, name: String?, password: String) {
 		let user = User(email: email, name: name, password: password)
+		sender.setLoading(true)
 		API.authProvider.request(.register(user: user), dataType: User.self) { result in
+			sender.setLoading(false)
 			switch result {
 			case .failure(let error):
 				Alert(error: error).show()
 			case .success:
-				self.login(email: email, password: password)
+				self.login(sender: sender, email: email, password: password)
 			}
 		}
 	}
 
-	func login(email: String, password: String) {
+	func login(sender: Loadingable, email: String, password: String) {
+		sender.setLoading(true)
 		API.authProvider.request(.login(email: email, password: password), dataType: Token.self) { result in
+			sender.setLoading(false)
 			switch result {
 			case .failure(let error):
 				Alert(error: error).show()

@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  VaporTodos
+
+  Created by Omar Albeik on 8/25/18.
+  Copyright © 2018 Omar Albeik. All rights reserved.
+*/
+
+// Generic
+"generic.unknown_server_error" = "Unknown Server Error";
+
+// Auth screen
+"auth.mode.register" = "Register";
+"auth.mode.login" = "Login";
+"auth.form.placeholders.email" = "Email Address";
+"auth.form.placeholders.name" = "Name (Optional)";
+"auth.form.placeholders.password" = "Password";
+"auth.form.submit.register" = "Create Account";
+"auth.form.submit.login" = "Login";
+
+// Todos screen
+"todo.listing.title" = "Todos";
+"todo.listing.logout" = "Logout";
+"todo.listing.cell.delete" = "Delete";
+"todo.listing.cell.mark_done" = "Mark Done";
+"todo.listing.cell.mark_todo" = "Mark Todo";
+"todo.listing.logout_alert.title" = "Logout?";
+"todo.listing.logout_alert.message" = "You will not be able to access your todos before signing in again.";
+"todo.listing.logout_alert.options.logout" = "Logout";
+"todo.listing.logout_alert.options.cancel" = "Cancel";
+
+// Todo screen
+"todo.details.title.new" = "New Todo";
+"todo.details.title.edit" = "Edit Todo";

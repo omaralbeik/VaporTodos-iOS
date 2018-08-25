@@ -37,3 +37,6 @@ final class TodoView: View {
 	}
 
 }
+
+// MARK: - Loadingable
+extension TodoView: Loadingable {}

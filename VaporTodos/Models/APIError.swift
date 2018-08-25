@@ -20,7 +20,7 @@ public enum APIError: Error {
 extension APIError: LocalizedError {
 
 	private var unknownErrorMessage: String {
-		return "Unknown Server Error"
+		return L10n.Generic.unknownServerError
 	}
 
 	public var errorDescription: String? {

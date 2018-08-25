@@ -34,8 +34,8 @@ final class TodosViewController: ViewController, Layouting {
 		}
 
 		navigationController?.navigationBar.setColors(background: Color.white, tint: Color.skyBlue)
-		navigationItem.title = "Todos"
-		navigationItem.leftBarButtonItem = .init(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutBarButtonItem))
+		navigationItem.title = L10n.Todo.Listing.title
+		navigationItem.leftBarButtonItem = .init(title: L10n.Todo.Listing.logout, style: .plain, target: self, action: #selector(didTapLogoutBarButtonItem))
 		navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .add, target: self, action: #selector(didTapAddBarButtonItem))
 	}
 
@@ -55,17 +55,17 @@ extension TodosViewController: UITableViewDataSource, UITableViewDelegate {
 	}
 
 	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] _, indexPath in
+		let deleteAction = UITableViewRowAction(style: .destructive, title: L10n.Todo.Listing.Cell.delete) { [weak self] _, indexPath in
 			self?.deleteTodo(indexPath: indexPath)
 		}
 		deleteAction.backgroundColor = Color.red
 
-		let doAction = UITableViewRowAction(style: .normal, title: "Mark Done") { [weak self] _, indexPath in
+		let doAction = UITableViewRowAction(style: .normal, title: L10n.Todo.Listing.Cell.markDone) { [weak self] _, indexPath in
 			self?.markTodo(indexPath: indexPath, isDone: true)
 		}
 		doAction.backgroundColor = Color.green
 
-		let undoAction = UITableViewRowAction(style: .normal, title: "Undo") { [weak self] _, indexPath in
+		let undoAction = UITableViewRowAction(style: .normal, title: L10n.Todo.Listing.Cell.markTodo) { [weak self] _, indexPath in
 			self?.markTodo(indexPath: indexPath, isDone: false)
 		}
 		undoAction.backgroundColor = Color.yellow
@@ -89,8 +89,18 @@ private extension TodosViewController {
 
 	@objc
 	func didTapLogoutBarButtonItem() {
-		AuthCache.token = nil
-		(UIApplication.shared.delegate as! AppDelegate).showAuthController()
+		let alert = UIAlertController(title: L10n.Todo.Listing.LogoutAlert.title, message: L10n.Todo.Listing.LogoutAlert.message, preferredStyle: .alert)
+
+		let logoutAction = UIAlertAction(title: L10n.Todo.Listing.LogoutAlert.Options.logout, style: .destructive) { _ in
+			AuthCache.token = nil
+			(UIApplication.shared.delegate as! AppDelegate).showAuthController()
+		}
+		alert.addAction(logoutAction)
+
+		let cancelAction = UIAlertAction(title: L10n.Todo.Listing.LogoutAlert.Options.cancel, style: .cancel, handler: nil)
+		alert.addAction(cancelAction)
+
+		present(alert, animated: true)
 	}
 
 	@objc

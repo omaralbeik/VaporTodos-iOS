@@ -21,7 +21,7 @@ final class AuthView: View {
 
 	lazy var emailTextField: UITextField = {
 		let textField = UITextField()
-		textField.placeholder = "Email Address"
+		textField.placeholder = L10n.Auth.Form.Placeholders.email
 		textField.keyboardType = .emailAddress
 		textField.autocorrectionType = .no
 		textField.autocapitalizationType = .none
@@ -32,9 +32,19 @@ final class AuthView: View {
 		return textField
 	}()
 
+	lazy var nameTextField: UITextField = {
+		let textField = UITextField()
+		textField.placeholder = L10n.Auth.Form.Placeholders.name
+		if #available(iOS 11.0, *) {
+			textField.textContentType = .name
+		}
+		setTextFieldStyle(textField)
+		return textField
+	}()
+
 	lazy var passwordTextField: UITextField = {
 		let textField = UITextField()
-		textField.placeholder = "Password"
+		textField.placeholder = L10n.Auth.Form.Placeholders.password
 		textField.isSecureTextEntry = true
 		if #available(iOS 11.0, *) {
 			textField.textContentType = .password
@@ -43,20 +53,10 @@ final class AuthView: View {
 		return textField
 	}()
 
-	lazy var nameTextField: UITextField = {
-		let textField = UITextField()
-		textField.placeholder = "Name (Optional)"
-		if #available(iOS 11.0, *) {
-			textField.textContentType = .name
-		}
-		setTextFieldStyle(textField)
-		return textField
-	}()
-
 	lazy var submitButton: UIButton = {
 		let button = UIButton(type: .system)
 		button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
-		button.setTitle(AuthMode.register.title, for: .normal)
+		button.setTitle(AuthMode.register.submitTitle, for: .normal)
 		button.backgroundColor = Color.skyBlue
 		button.tintColor = Color.white
 		button.layer.cornerRadius = 4
@@ -109,11 +109,14 @@ final class AuthView: View {
 
 }
 
+// MARK: - Loadingable
+extension AuthView: Loadingable {}
+
 // MARK: - Helpers
 extension AuthView {
 
 	func configure(for mode: AuthMode) {
-		submitButton.setTitle(mode.title, for: .normal)
+		submitButton.setTitle(mode.submitTitle, for: .normal)
 
 		switch mode {
 		case .login:

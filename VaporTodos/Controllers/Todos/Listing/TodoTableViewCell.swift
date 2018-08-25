@@ -10,8 +10,6 @@ import UIKit
 
 final class TodoTableViewCell: TableViewCell {
 
-	static let reuseIdentifier = "todoCell"
-
 	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
 		label.numberOfLines = 0
@@ -52,6 +50,16 @@ final class TodoTableViewCell: TableViewCell {
 
 }
 
+// MARK: - Reusable
+extension TodoTableViewCell: Reusable {
+
+	static var reuseIdentifier: String {
+		return "todoCell"
+	}
+
+}
+
+// MARK: - Configure
 extension TodoTableViewCell {
 
 	func configure(for todo: Todo) {

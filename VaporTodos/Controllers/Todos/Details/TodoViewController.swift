@@ -28,7 +28,7 @@ final class TodoViewController: ViewController, Layouting {
 		super.viewWillAppear(animated)
 
 		navigationController?.navigationBar.setColors(background: Color.white, tint: Color.skyBlue)
-		navigationItem.title = todo == nil ? "New Todo" : "Edit Todo"
+		navigationItem.title = todo == nil ? L10n.Todo.Details.Title.new : L10n.Todo.Details.Title.edit
 
 		navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancelBarButtonItem))
 		navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveBarButtonItem))
@@ -69,9 +69,9 @@ private extension TodoViewController {
 
 		if var aTodo = todo {
 			aTodo.title = title
-			updateTodo(aTodo)
+			updateTodo(sender: layoutableView, todo: aTodo)
 		} else {
-			createTodo(title: title)
+			createTodo(sender: layoutableView, title: title)
 		}
 	}
 
@@ -80,10 +80,13 @@ private extension TodoViewController {
 // MARK: - Networking
 private extension TodoViewController {
 
-	func createTodo(title: String) {
+	func createTodo(sender: Loadingable, title: String) {
 		guard let token = AuthCache.token?.token else { return }
 
+		sender.setLoading(true)
 		API.todoProvider.request(.create(title: title, token: token), dataType: Todo.self) { [weak self] result in
+			sender.setLoading(false)
+
 			switch result {
 			case .failure(let error):
 				print(error.localizedDescription)
@@ -94,10 +97,13 @@ private extension TodoViewController {
 		}
 	}
 
-	func updateTodo(_ todo: Todo) {
+	func updateTodo(sender: Loadingable, todo: Todo) {
 		guard let token = AuthCache.token?.token else { return }
 
+		sender.setLoading(true)
 		API.todoProvider.request(.update(todo, token: token), dataType: Todo.self) { [weak self] result in
+			sender.setLoading(false)
+
 			switch result {
 			case .failure(let error):
 				print(error.localizedDescription)

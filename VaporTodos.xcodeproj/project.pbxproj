@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0702C14F2131ED4900CB3CE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0702C1512131ED4900CB3CE0 /* Localizable.strings */; };
+		0702C1542131EF4B00CB3CE0 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702C1532131EF4B00CB3CE0 /* L10n.swift */; };
+		0702C1572131F53500CB3CE0 /* Loadingable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702C1562131F53500CB3CE0 /* Loadingable.swift */; };
+		0702C1592131F5CA00CB3CE0 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702C1582131F5CA00CB3CE0 /* Reusable.swift */; };
 		074C5C7B2130A622002457EF /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C5C7A2130A622002457EF /* AuthView.swift */; };
 		074C5C7D2130A62F002457EF /* TodosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C5C7C2130A62F002457EF /* TodosView.swift */; };
 		074C5C7F2130A639002457EF /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C5C7E2130A639002457EF /* View.swift */; };
@@ -40,6 +44,10 @@
 
 /* Begin PBXFileReference section */
 		04A9FA1408D97B81DF96EA69 /* Pods-VaporTodos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaporTodos.release.xcconfig"; path = "Pods/Target Support Files/Pods-VaporTodos/Pods-VaporTodos.release.xcconfig"; sourceTree = "<group>"; };
+		0702C1502131ED4900CB3CE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0702C1532131EF4B00CB3CE0 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		0702C1562131F53500CB3CE0 /* Loadingable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadingable.swift; sourceTree = "<group>"; };
+		0702C1582131F5CA00CB3CE0 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		074C5C7A2130A622002457EF /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		074C5C7C2130A62F002457EF /* TodosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosView.swift; sourceTree = "<group>"; };
 		074C5C7E2130A639002457EF /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -86,6 +94,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0702C14C2131ED1500CB3CE0 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				07A0766E2130988B00545302 /* Assets.xcassets */,
+				07A076702130988B00545302 /* LaunchScreen.storyboard */,
+				0702C1522131EEC200CB3CE0 /* Localization */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		0702C1522131EEC200CB3CE0 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				0702C1512131ED4900CB3CE0 /* Localizable.strings */,
+				0702C1532131EF4B00CB3CE0 /* L10n.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		0702C1552131F52600CB3CE0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0702C1562131F53500CB3CE0 /* Loadingable.swift */,
+				0702C1582131F5CA00CB3CE0 /* Reusable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		074C5C802130A648002457EF /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,15 +241,15 @@
 		07A076662130988A00545302 /* VaporTodos */ = {
 			isa = PBXGroup;
 			children = (
+				07A076732130988B00545302 /* Info.plist */,
 				07A076672130988A00545302 /* AppDelegate.swift */,
 				074C5C8C2130B102002457EF /* Models */,
 				075D39F92131BBCC008D8A3B /* Caching */,
 				074C5C932130B1F6002457EF /* Networking */,
 				074C5C8B2130B0F9002457EF /* Controllers */,
+				0702C1552131F52600CB3CE0 /* Protocols */,
+				0702C14C2131ED1500CB3CE0 /* Assets */,
 				07DEE8CF2130D3500037D9BC /* Common */,
-				07A0766E2130988B00545302 /* Assets.xcassets */,
-				07A076702130988B00545302 /* LaunchScreen.storyboard */,
-				07A076732130988B00545302 /* Info.plist */,
 			);
 			path = VaporTodos;
 			sourceTree = "<group>";
@@ -308,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07A076722130988B00545302 /* LaunchScreen.storyboard in Resources */,
+				0702C14F2131ED4900CB3CE0 /* Localizable.strings in Resources */,
 				07A0766F2130988B00545302 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,13 +357,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = SwiftLint;
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +375,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-VaporTodos/Pods-VaporTodos-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
@@ -350,6 +384,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
@@ -390,11 +425,13 @@
 				075D39FC2131BC3D008D8A3B /* Alert.swift in Sources */,
 				074C5C822130A655002457EF /* AuthViewController.swift in Sources */,
 				07DEE8DB2130DD420037D9BC /* AuthCache.swift in Sources */,
+				0702C1572131F53500CB3CE0 /* Loadingable.swift in Sources */,
 				07DEE8D72130D7130037D9BC /* TodoService.swift in Sources */,
 				074C5C7B2130A622002457EF /* AuthView.swift in Sources */,
 				074C5C852130A664002457EF /* TodosViewController.swift in Sources */,
 				07A0766A2130988A00545302 /* ViewController.swift in Sources */,
 				074C5C7F2130A639002457EF /* View.swift in Sources */,
+				0702C1542131EF4B00CB3CE0 /* L10n.swift in Sources */,
 				074C5C922130B120002457EF /* Todo.swift in Sources */,
 				074C5C952130B205002457EF /* API.swift in Sources */,
 				075D39F62131B173008D8A3B /* TodoView.swift in Sources */,
@@ -408,6 +445,7 @@
 				075D39F22131AB6C008D8A3B /* TableViewCell.swift in Sources */,
 				074C5C902130B115002457EF /* User.swift in Sources */,
 				07DEE8D52130D4F40037D9BC /* ErrorResponse.swift in Sources */,
+				0702C1592131F5CA00CB3CE0 /* Reusable.swift in Sources */,
 				074C5C972130B2F6002457EF /* AuthService.swift in Sources */,
 				07DEE8D32130D3C80037D9BC /* APIError.swift in Sources */,
 			);
@@ -416,6 +454,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0702C1512131ED4900CB3CE0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0702C1502131ED4900CB3CE0 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		07A076702130988B00545302 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

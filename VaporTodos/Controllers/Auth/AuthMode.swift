@@ -31,9 +31,18 @@ extension AuthMode {
 	var title: String {
 		switch self {
 		case .login:
-			return "Login"
+			return L10n.Auth.Mode.login
 		case .register:
-			return "Register"
+			return L10n.Auth.Mode.register
+		}
+	}
+
+	var submitTitle: String {
+		switch self {
+		case .login:
+			return L10n.Auth.Form.Submit.login
+		case .register:
+			return L10n.Auth.Form.Submit.register
 		}
 	}
 

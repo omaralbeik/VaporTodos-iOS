@@ -6,5 +6,6 @@ target 'VaporTodos' do
   pod 'Moya'
   pod 'SnapKit'
   pod 'SwiftMessages'
+  pod 'NVActivityIndicatorView'
 
 end
